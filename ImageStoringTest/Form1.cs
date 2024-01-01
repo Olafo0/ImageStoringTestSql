@@ -8,8 +8,6 @@ namespace ImageStoringTest
     {
 
         string connectionString = "Data Source=DESKTOP-DNB9KRF;Initial Catalog=ImageDatabaseTest;Integrated Security=True;";
-        SqlConnection cnn;
-        SqlCommand cmd;
         public Form1()
         {
 
@@ -30,13 +28,11 @@ namespace ImageStoringTest
                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                 imageData = ms.ToArray();
             }
-
-            // Connection string (replace with your actual connection string)
             using (SqlConnection cnn = new SqlConnection(connectionString))
             {
                 cnn.Open();
 
-                // SQL query with a parameter for the VARBINARY(MAX) column
+                // SQL query with a parameter for the VARBINARY(MAX) 
                 string query = "INSERT INTO ImageStore(Images) VALUES(@ImageData)";
 
                 using (SqlCommand cmd = new SqlCommand(query, cnn))
@@ -52,7 +48,7 @@ namespace ImageStoringTest
             }
         }
 
-        // making the byte from database into image
+        // Making the byte from the database into an image
         private void button2_Click(object sender, EventArgs e)
         {
 
